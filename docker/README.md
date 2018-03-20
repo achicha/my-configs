@@ -1,10 +1,9 @@
 ##### Requirements:
 
-- [user] should be in docker group
-    
-    
-    sudo usermod -aG docker [user]   # add user to docker group
-    groups [user]                    # show all user's groups
+    # user_name should be in docker group
+    sudo usermod -aG docker user_name   # add user to docker group
+    groups user_name                    # show all user's groups
+
 
 #### Quick start
     # build container
