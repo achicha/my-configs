@@ -1,0 +1,22 @@
+# cd to the folder
+# docker pull jupyter/datascience-notebook:latest
+# docker build -t my_jupyter -f ./Dockerfile_jupyter ./
+# docker run --name jupnot --restart=always --user root -p 8888:8888 -d -v /home/user_name/docker_folder:/home/jovyan my_jupyter start-notebook.sh --NotebookApp.token=''
+# !!! do not forget to change mapped DIR for Windows/Linux
+
+FROM jupyter/datascience-notebook:latest
+MAINTAINER me
+USER root
+
+RUN echo 'export TERM=xterm' >> ~/.bashrc
+
+RUN 	apt-get update -qq \
+	&&	apt-get install -y nano tree man wget \
+	&&  apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#RUN	apt-get install -y curl
+RUN 	pip install grab selection pycurl \
+					pandas-datareader aiohttp
+
+COPY 	./ipython_custom.js /opt/conda/lib/python3.5/site-packages/notebook/static/custom/custom.js
+#COPY 	./ipython_custom.css /opt/conda/lib/python3.5/site-packages/notebook/static/custom/custom.css
+COPY	./notebook.json  /home/jovyan/.jupyter/nbconfig/notebook.json

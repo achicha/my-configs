@@ -5,6 +5,7 @@
 
 *.db
 *.mo
+*.sqlite3
 
 *.pub
 
@@ -19,6 +20,7 @@ coverage/
 
 env/
 venv/
+.env
 
 dist/
 *.egg-info/
