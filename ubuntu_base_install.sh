@@ -21,6 +21,7 @@ apt install -y nano tree curl man wget net-tools traceroute
 
 # install dev utils
 apt install -y python3.6 git python3-pip postgresql-client
+pip3 install pipenv
 
 # install docker: https://docs.docker.com/engine/installation/linux/ubuntu/
 apt install \
@@ -34,6 +35,7 @@ apt install -y docker-ce
 # add configuration
 git config --global color.ui auto
 git config --global credential.helper cache
+eval "$(pipenv --completion)" >> ~/.bashrc
 
 # Clean up APT when done.
 apt autoremove -y
