@@ -1,5 +1,5 @@
 # https://github.com/jenkinsci/docker
-# docker run --restart=always --name myjenkins -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home my_jenk$
+# docker run --restart=always --name myjenkins -p 8080:8080 -p 50000:50000 -d -v /home/user_name/jenkins_home:/var/jenkins_home my_jenkins_img
 
 FROM jenkins/jenkins:lts
 RUN /usr/local/bin/install-plugins.sh git-client
