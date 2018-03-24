@@ -1,0 +1,13 @@
+# docker build -t "flower" -f ./flower_Dockerfile ./
+# docker run -d --restart=always -p=49555:5555 -v /home/username/folder:/docker_home flower flower -A tasks
+
+FROM python:3
+    # update
+RUN apt-get update -qq \
+    && apt-get install -y nano tree man wget htop \
+    # install flower
+    && pip install flower \
+    # clean
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN mkdir -p /home/docker_home

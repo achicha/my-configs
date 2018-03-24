@@ -2,15 +2,15 @@ FROM python:3
 MAINTAINER achicha
 USER root
 
-RUN 	apt-get update -qq \
-	&&	apt-get install -y nano tree man wget
-
-# install grab
-RUN apt-get install -y libcurl4-openssl-dev libssl-dev
-RUN export PYCURL_SSL_LIBRARY=nss
-RUN pip install --no-cache-dir --compile pycurl
-RUN pip install grab selection aiohttp
-
-# clean
-RUN apt-get autoremove \
+    # update
+RUN apt-get update -qq \
+    # install base utils
+    && apt-get install -y nano tree man wget htop \
+    # install grab
+    && apt-get install -y libcurl4-openssl-dev libssl-dev \
+    && export PYCURL_SSL_LIBRARY=nss \
+    && pip install --no-cache-dir --compile pycurl \
+    && pip install grab selection aiohttp \
+    # clean
+    && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

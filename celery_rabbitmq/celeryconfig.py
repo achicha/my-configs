@@ -8,7 +8,7 @@ CELERYBEAT_SCHEDULE = {
     'every-minute': {
         'task': 'tasks.add',
         'schedule': crontab(minute='*/1'),
-        'args': (1,2),
+        'args': (1, 2),
         },
     }
 
