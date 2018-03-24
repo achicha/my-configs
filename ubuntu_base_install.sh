@@ -18,7 +18,7 @@ add-apt-repository \
 apt update -qq && apt upgrade -y
 
 # install base utils
-apt install -y nano tree curl man wget net-tools traceroute
+apt install -y nano tree curl man wget net-tools traceroute htop
 
 # install dev utils
 apt install -y python3.6 git python3-pip postgresql-client
