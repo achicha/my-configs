@@ -1,0 +1,23 @@
+[Unit]
+
+    Description=Flower Service
+    After=network.target
+    Requires=celery.service
+
+[Service]
+
+    Type=simple
+    WorkingDirectory=/home/andrew/jenkins_home/workspace/travel
+    EnvironmentFile=/home/andrew/jenkins_home/workspace/travel/.env
+
+    User=andrew
+    Group=andrew
+    PermissionsStartOnly=true
+    Restart=always
+
+    ExecStart=/usr/local/bin/pipenv run flower -A tasks
+    TimeoutSec=300
+
+[Install]
+
+    WantedBy=multi-user.target
