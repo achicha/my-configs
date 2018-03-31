@@ -1,0 +1,22 @@
+[Unit]
+
+    Description=Celery Service
+    After=network.target
+
+[Service]
+
+    Type=simple
+    WorkingDirectory=/home/andrew/try-celery
+    EnvironmentFile=/home/andrew/jenkins_home/workspace/travel/.env
+
+    User=andrew
+    Group=andrew
+    PermissionsStartOnly=true
+    Restart=always
+
+    ExecStart=/usr/local/bin/pipenv run celery worker -B -E -A tasks --loglevel=info -f /home/andrew/try-celery/celery.logs
+    TimeoutSec=300
+
+[Install]
+
+    WantedBy=multi-user.target

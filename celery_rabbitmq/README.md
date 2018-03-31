@@ -21,6 +21,16 @@ celery params:
     -f: write to logfile
     -E: Send task-related events so that tasks can be monitored using tools like flower    
 
+systemd:
+
+    /etc/systemd/system/            # path
+    systemctl -l status myunit      # service status
+    systemctl enable myunit         # разрешаем его, если disabled
+    systemctl start myunit          # запускаем сервис
+    systemctl daemon-reload         # restart, after config changes
+    sudo journalctl -xn             # check logs
+
 links:
 
 - if login refused error: read on [stackoverflow](https://stackoverflow.com/questions/26811924/spring-amqp-rabbitmq-3-3-5-access-refused-login-was-refused-using-authentica/26820152)
+- [systemd config](https://habrahabr.ru/company/southbridge/blog/255845/)
