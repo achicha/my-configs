@@ -15,6 +15,7 @@
     Restart=always
 
     ExecStart=/usr/local/bin/pipenv run celery worker -B -E -A tasks --loglevel=info -f /home/andrew/try-celery/celery.logs
+    # ExecStart=/usr/local/bin/pipenv run celery multi start 4 -B -E -A tasks -Q:1 first -Q:2 second -Q:3 third -Q:4 celery  --loglevel=info -f /home/andrew/try-celery/celery.logs
     TimeoutSec=300
 
 [Install]
