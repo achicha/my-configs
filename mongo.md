@@ -1,10 +1,10 @@
 #### Quick Start
 
-install mongo client: `sudo apt install mongodb-clients`
-install motor:  `pip install motor`
-docker run: `docker run --name some-mongo -p 27017:27017 -v /home/user_name/mongo_db:/data/db -d mongo`
+- install mongo client: `sudo apt install -y mongodb-org-shell`
+- install motor:  `pip install motor`
+- docker run: `docker run --name some-mongo -p 27017:27017 -v /home/user_name/mongo_db:/data/db -d mongo`
 
-#### Base app
+#### Base app (python)
 
     from motor.motor_asyncio import AsyncIOMotorClient
     _client = AsyncIOMotorClient()
@@ -21,6 +21,7 @@ docker run: `docker run --name some-mongo -p 27017:27017 -v /home/user_name/mong
 
 #### links:
 
+[install](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 [docker hub](https://hub.docker.com/_/mongo/)
 [motor](https://motor.readthedocs.io/en/latest/examples/index.html)
 [examples](https://github.com/mongodb/motor/blob/master/test/asyncio_tests/test_asyncio_collection.py)
