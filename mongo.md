@@ -21,8 +21,8 @@
 
 #### links:
 
-[install](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
-[docker hub](https://hub.docker.com/_/mongo/)
-[motor](https://motor.readthedocs.io/en/latest/examples/index.html)
-[examples](https://github.com/mongodb/motor/blob/master/test/asyncio_tests/test_asyncio_collection.py)
-[docs](https://docs.mongodb.com/manual/reference/method/db.collection.bulkWrite/#bulkwrite-write-operations-updateonemany)
+- [install](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+- [docker hub](https://hub.docker.com/_/mongo/)
+- [motor](https://motor.readthedocs.io/en/latest/examples/index.html)
+- [examples](https://github.com/mongodb/motor/blob/master/test/asyncio_tests/test_asyncio_collection.py)
+- [docs](https://docs.mongodb.com/manual/reference/method/db.collection.bulkWrite/#bulkwrite-write-operations-updateonemany)

@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+  # OPTIONAL: If you want to get emails from sentry include this docker container
+  # smtp:
+  #   image: 'tianon/exim4:latest'
+  #   environment:
+  #     GMAIL_USER: 'GMAIL_USER@gmail.com'
+  #     GMAIL_PASSWORD: 'GMAIL_PASSWORD_OR_GMAIL_APP_PASSWORD'
+
+  sentry-redis:
+    container_name: sentry-redis
+    restart: always
+    image: 'redis:latest'
+
+  sentry-postgres:
+    image: 'postgres:latest'
+    container_name: sentry-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: sentry
+      POSTGRES_PASSWORD: sentry
+      POSTGRES_DB: sentry 
+    volumes:
+      - /srv/sentry/postgres:/var/lib/postgresql/data
+
+  sentry-base:
+    image: 'sentry:latest'
+    container_name: sentry-base
+    restart: always
+    depends_on:
+      - sentry-redis
+      - sentry-postgres
+    links:
+      - sentry-redis
+      - sentry-postgres
+    ports:
+      - 9000:9000
+    env_file:
+      - sentry.env
+    volumes:
+      - /srv/sentry/sentry:/var/lib/sentry/files
+
+  sentry-cron:
+    image: 'sentry:latest'
+    container_name: sentry-cron
+    restart: always
+    depends_on:
+      - sentry-base
+    links:
+      - sentry-redis
+      - sentry-postgres
+    command: "sentry run cron"
+    env_file:
+      - sentry.env
+    volumes:
+      - /srv/sentry/sentry:/var/lib/sentry/files
+
+  sentry-worker:
+    image: 'sentry:latest'
+    container_name: sentry-worker
+    restart: always
+    depends_on:
+      - sentry-base
+    links:
+      - sentry-redis
+      - sentry-postgres
+    command: "sentry run worker"
+    env_file:
+      - sentry.env
+    volumes:
+      - /srv/sentry/sentry:/var/lib/sentry/files
