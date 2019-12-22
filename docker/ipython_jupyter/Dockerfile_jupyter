@@ -1,7 +1,7 @@
 # cd to the folder
 # docker pull jupyter/datascience-notebook:latest
 # docker build -t my_jupyter -f ./Dockerfile_jupyter ./
-# docker run --name jupnot --restart=always --user root -p 8888:8888 -d -v /home/user_name/docker_folder:/home/jovyan my_jupyter start-notebook.sh --NotebookApp.token=''
+# docker run --name jupnot --restart=always -e GRANT_SUDO=yes --user root -p 8888:8888 -d -v /home/user_name/docker_folder:/home/jovyan my_jupyter start-notebook.sh --NotebookApp.token=''
 # !!! do not forget to change mapped DIR for Windows/Linux
 
 FROM jupyter/datascience-notebook:latest
@@ -9,14 +9,23 @@ MAINTAINER me
 USER root
 
 RUN echo 'export TERM=xterm' >> ~/.bashrc
+#COPY 	./ipython_custom.js /opt/conda/lib/python3.5/site-packages/notebook/static/custom/custom.js
+#COPY 	./ipython_custom.css /opt/conda/lib/python3.5/site-packages/notebook/static/custom/custom.css
+#COPY	./notebook.json  /home/jovyan/.jupyter/nbconfig/notebook.json
 
 RUN 	apt-get update -qq \
-	&&	apt-get install -y nano tree man wget \
-	&&  apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-#RUN	apt-get install -y curl
-RUN 	pip install --upgrade pip grab selection pycurl \
-					pandas-datareader aiohttp
+	&&	apt-get install -y nano tree man wget htop
 
-COPY 	./ipython_custom.js /opt/conda/lib/python3.5/site-packages/notebook/static/custom/custom.js
-#COPY 	./ipython_custom.css /opt/conda/lib/python3.5/site-packages/notebook/static/custom/custom.css
-COPY	./notebook.json  /home/jovyan/.jupyter/nbconfig/notebook.json
+RUN 	pip install --upgrade pip pandas-datareader aiohttp bs4 redis sqlalchemy click pytest sshtunnel paramiko
+
+# Grab (parsing)
+#RUN	apt-get install -y libcurl4-openssl-dev libssl-dev
+#RUN    pip install --no-cache-dir --compile pycurl
+#RUN    pip install --upgrade grab selection 
+
+# Google BigQuery
+RUN     pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib pandas_gbq
+
+# Clean
+RUN     apt-get autoremove -y
+RUN     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
