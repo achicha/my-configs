@@ -1,0 +1,15 @@
+# https://github.com/Paperspace/jupyter-docker-stacks/tree/master/all-spark-notebook
+docker run --name spark_nb --restart=always -e GRANT_SUDO=yes --user root -d -p 8888:8888 -p 4040:4040 -p 4041:4041 -v /Users/andreyev/Projects:/home/jovyan jupyter/all-spark-notebook start-notebook.sh --NotebookApp.token=''
+
+###################################
+# BEAKERX
+# https://habr.com/ru/company/youla/blog/452914/
+
+# docker run -it --name scala_beakerx --restart=always -e GRANT_SUDO=yes --user root -p 8889:8888 -v /Users/andreyev/beakerx:/workspace entony/jupyter-scala:1.4.1 --NotebookApp.token=''
+
+###################################
+
+# ALMOND
+# https://github.com/almond-sh/almond
+
+# docker run -it --name scala_almond --restart=always -e GRANT_SUDO=yes --user root -p 8890:8888 -v /Users/andreyev/Projects:/home/jovyan almondsh/almond:latest
