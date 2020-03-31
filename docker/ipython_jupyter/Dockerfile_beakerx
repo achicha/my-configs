@@ -1,1 +1,3 @@
-docker run -it -d --name scala_beakerx --restart=always -e GRANT_SUDO=yes --user root -p 8900:8888 -v /Users/andreyev/beakerx:/workspace/my_code entony/jupyter-scala:1.4.1 --NotebookApp.token=''
+# https://habr.com/ru/company/youla/blog/452914/
+
+# docker run -it --name scala_beakerx --restart=always -e GRANT_SUDO=yes --user root -p 8900:8888 -v /Users/andreyev/beakerx:/workspace entony/jupyter-scala:1.4.1 --NotebookApp.token=''
