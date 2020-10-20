@@ -1,6 +1,6 @@
 ### HOW TO RUN: (!!! do not forget to change mapped LOCAL_DIR for Windows/Linux)
 # docker build -t jupyter_image -f ./Dockerfile_jupyter ./
-# docker run --name jupnot --restart=always -e GRANT_SUDO=yes --user root -p 8888:8888 -d -v /LOCAL_DIR:/home/jovyan jupyter_image start-notebook.sh --NotebookApp.token=''
+# docker run --name jupnot --restart=always -e GRANT_SUDO=yes -e JUPYTER_RUNTIME_DIR=/tmp/runtime --user root -p 8888:8888 -d -v /LOCAL_DIR:/home/jovyan jupyter_image start-notebook.sh --NotebookApp.token=''
 # open in browser: 0.0.0.0:8888/lab
 
 ############################
@@ -20,6 +20,7 @@ RUN    	apt-get install --no-install-recommends -y openjdk-8-jre-headless ca-cer
 
 # Install DEV tools
 RUN 	pip install --upgrade pip \
+		jupyter jupyter-core \
 		# SSH
 		sshtunnel paramiko \
 		# DB connectors
