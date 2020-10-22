@@ -20,7 +20,8 @@ RUN    	apt-get install --no-install-recommends -y openjdk-8-jre-headless ca-cer
 
 # Install DEV tools
 RUN 	pip install --upgrade pip \
-		jupyter jupyter-core \
+		# update jupyter 
+		jupyter jupyter-core jupyterthemes \
 		# SSH
 		sshtunnel paramiko \
 		# DB connectors
