@@ -21,7 +21,7 @@ RUN    	apt-get install --no-install-recommends -y openjdk-8-jre-headless ca-cer
 # Install DEV tools
 RUN 	pip install --upgrade pip \
 		# update jupyter 
-		jupyter jupyter-core jupyterthemes \
+		# jupyter jupyter-core jupyterthemes \
 		# SSH
 		sshtunnel paramiko \
 		# DB connectors
@@ -33,6 +33,8 @@ RUN 	pip install --upgrade pip \
 		fastparquet pyarrow \
 		# https://github.com/krassowski/jupyterlab-lsp
 		jupyter-lsp python-language-server[all] black \
+		# trading
+		finam-export finta \
 		# other
 		boto3 aiohttp bs4 click pytest
 
@@ -46,6 +48,7 @@ RUN 	jupyter labextension install @jupyterlab/toc --no-build \
 	&& 	jupyter labextension install @krassowski/jupyterlab_go_to_definition --no-build \
 	&&	jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
 	&&	jupyter labextension install @jupyterlab/debugger --no-build \ 
+	&&  jupyter labextension install jupyterlab-plotly@4.12.0 --no-build \
 	#&&	jupyter labextension install beakerx-jupyterlab --no-build \
 	&& 	jupyter lab build
 
